@@ -17,7 +17,7 @@ namespace Engine
             set
             {
                 _currentHitPoints = value;
-                OnPropertyChange("CurrentHitPoints");
+                OnPropertyChanged("CurrentHitPoints");
             }
         }
         public int MaximumHitPoints { get; set; }
@@ -29,7 +29,7 @@ namespace Engine
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
-        protected void OnPropertyChange(string name)
+        protected void OnPropertyChanged(string name)
         {
             if (PropertyChanged != null)
             {
