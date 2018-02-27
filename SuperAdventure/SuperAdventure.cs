@@ -143,6 +143,9 @@ namespace SuperAdventure
                 rtbLocation.Text = _player.CurrentLocation.Name + Environment.NewLine;
                 rtbLocation.Text += _player.CurrentLocation.Description + Environment.NewLine;
 
+                // Show/hide Vendor 'Trade' Button
+                btnTrade.Visible = (_player.CurrentLocation.VendorWorkingHere != null);
+
                 if (_player.CurrentLocation.MonsterLivingHere == null)
                 {
                     cboWeapons.Visible = false;
@@ -158,6 +161,7 @@ namespace SuperAdventure
                     btnUsePotion.Visible = _player.Potions.Any();
                 }
             }
+
         }
 
         private void btnNorth_Click(object sender, EventArgs e)
@@ -198,7 +202,9 @@ namespace SuperAdventure
 
         private void btnTrade_Click(object sender, EventArgs e)
         {
-
+            TradingScreen tradingScreen = new TradingScreen(_player);
+            tradingScreen.StartPosition = FormStartPosition.CenterParent;
+            tradingScreen.ShowDialog(this);
         }
 
         private void SuperAdventure_FormClosing(object sender, FormClosingEventArgs e)
@@ -210,5 +216,6 @@ namespace SuperAdventure
         {
             _player.CurrentWeapon = (Weapon)cboWeapons.SelectedItem;
         }
+
     }
 }
